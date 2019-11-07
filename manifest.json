@@ -1,0 +1,6 @@
+{
+  "name": "roulette-bet-chrome-ext",
+  "version": "1.0",
+  "description": "Chrome extension for betting on CSGO Empire!",
+  "manifest_version": 2
+}
