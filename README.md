@@ -1,4 +1,10 @@
 # roulette-bet-chrome-ext
 Chrome extension for betting on CSGO Empire
 
-<div>Icons made by <a href="https://www.flaticon.com/authors/nikita-golubev" title="Nikita Golubev">Nikita Golubev</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+## To Use
+Open chrome://extensions in the chrome browser.
+Turn on Developer Mode
+Load the unpacked extension.
+
+## Attributions
+Icons made by (https://www.flaticon.com/authors/nikita-golubev "Nikita Golubev") from (https://www.flaticon.com/" Flaticon)
