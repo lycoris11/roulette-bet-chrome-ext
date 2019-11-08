@@ -7,4 +7,4 @@ Turn on Developer Mode
 Load the unpacked extension.
 
 ## Attributions
-Icons made by (https://www.flaticon.com/authors/nikita-golubev "Nikita Golubev") from (https://www.flaticon.com/" Flaticon)
+Icons made by [Nikita Golubev](https://www.flaticon.com/authors/nikita-golubev "Nikita Golubev") from [Flaticon](https://www.flaticon.com/" Flaticon)
