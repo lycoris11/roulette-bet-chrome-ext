@@ -6,10 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
             	chrome.tabs.executeScript(tabs[0].id, {file: "page.js"});
         	});
 		}else{
-			stopBetting();
+			chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            	chrome.tabs.executeScript(tabs[0].id, {file: "page.js"}, function(){
+            		run = false;
+            	});
+        	});
 		}
 	});
-	function stopBetting() {
-		alert("Betting Stopped!");
-	}
 });
