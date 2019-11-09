@@ -5,11 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             	chrome.tabs.executeScript(tabs[0].id, {file: "page.js"});
         	});
-		}else{
+		}
+	});
+
+	document.getElementById("stopBet").addEventListener('click', function(){
+		if(this.clicked){
+			alert("Betting Started!");
 			chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            	chrome.tabs.executeScript(tabs[0].id, {file: "page.js"}, function(){
-            		run = false;
-            	});
+            	chrome.tabs.executeScript(tabs[0].id, {file: "page.js"}, clearInterval());
         	});
 		}
 	});

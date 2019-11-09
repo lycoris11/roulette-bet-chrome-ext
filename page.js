@@ -1,14 +1,5 @@
 var run = true;
 
-function startRunning(run){
-    // do whatever you like here
-    if(run){
-    	console.log("Running!");
-    }else{
-    	console.log("Stopping!");
-    }
-    setTimeout(startRunning, 5000);
-}
 
 startRunning(run);
 
