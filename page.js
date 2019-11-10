@@ -1,7 +1,11 @@
 var run = true;
 
-
-startRunning(run);
+while(1){
+	if(!run){
+		break;
+		console.log("exiting loop")
+	}
+}
 
 function clickPenny() {
     document.getElementsByClassName("bet-input__control")[1].click();

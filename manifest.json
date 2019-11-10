@@ -3,10 +3,6 @@
   "version": "1.0",
   "description": "Chrome extension for betting on CSGO Empire",
   "permissions": ["declarativeContent", "storage", "*://*.csgoempire.com/*", "activeTab", "tabs", "<all_urls>"],
-  "background": {
-  	"scripts": ["background.js"],
-  	"persistent": false
-  },
   "browser_action": {
   	"default_popup": "popup.html",
   	"default_icon": { 
