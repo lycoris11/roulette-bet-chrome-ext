@@ -24,6 +24,13 @@ function getGoldCount(){
   return document.getElementsByClassName("text-light-grey-1 text-xxs font-bold mr-2")[5].innerText;
 }
 
+function clickClear(){
+  document.getElementsByClassName("ml-3 button-pill uppercase")[0].click();
+}
+
+function makeBet(){
+
+}
 
 chrome.runtime.onMessage.addListener(
       function(request, sender, sendResponse) {
@@ -33,33 +40,27 @@ chrome.runtime.onMessage.addListener(
         }
 });
 
-
-
-
-
-
-
-
-
 function beginBetting(){
   var stopOrRun = true;
-    var balance = getBalance();
-    clickPenny();
-
-    var click = false;
-    var checkTime = setInterval(function(){
-      if($())
-    })
-      if(getBlackCount > getGoldCount){
-        clickBlack();
-      }else if(getBlackCount === getGoldCount){
-        clickBlack();
-      }else{
-        clickGold();
-      }
-    });
-
-    if(tempBalance>balance)
-
-  }
+  var balance = getBalance();
+  var betAmount = 0.01;
+  clickPenny();
+  clickBlack();
+  clickClear();
+  var balance = getBalance();
+  console.log("Inside Begin Betting!");
+  setInterval(function(){
+    console.log("Inside the interval.");
+    if(balance === getBalance()){
+      console.log("Inside balance > getBalance");
+      document.getElementsByClassName("bet-input__control")[7].click();
+      clickBlack();
+    }else{
+      console.log("inside this");
+      clickPenny();
+      clickBlack();
+      clickClear();
+      balance = getBalance();
+    }
+  },30000);
 }
