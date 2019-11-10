@@ -1,5 +1,3 @@
-var startMsg = "I'm Dumb";
-
 function clickPenny() {
     document.getElementsByClassName("bet-input__control")[1].click();
 }
