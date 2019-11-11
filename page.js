@@ -48,6 +48,11 @@ function clickClear(){
   document.getElementsByClassName("ml-3 button-pill uppercase")[0].click();
 }
 
+//input custom bet
+function clickTextInput(customBetVal){
+  document.getElementsByClassName("bg-transparent w-full h-full")[0].value = customBetVal;
+}
+
 //clicks on the bet that has the most previous wins
 function clickBlackOrGold(){
   if(getBlackCount()>=getGoldCount()){
@@ -63,7 +68,7 @@ function beginBetting(){
   console.log("Inside Begin Betting!");
   var initialBalance = getBalance();
   //Click on a Dime
-  clickDime();
+  clickPenny();
   //Bet
   clickBlackOrGold();
   //Check balance afterwards
@@ -83,7 +88,38 @@ function beginBetting(){
       //you win, clear bet, click dime, and bet
       console.log("We Won!");
       clickClear();
-      clickDime();
+      clickPenny();
+      initialBalance = getBalance();
+      clickBlackOrGold();
+    }
+  },27500);
+}
+
+function beginCustomBetting(customBetVal){
+  console.log("Inside Begin Betting!");
+  var initialBalance = getBalance();
+  //Click on a Dime
+  clickTextInput(customBetVal);
+  //Bet
+  clickBlackOrGold();
+  //Check balance afterwards
+  afterBetBal = getBalance();
+  setInterval(function(){
+    //Get the balance after the bet
+    afterBetBal = getBalance();
+    //If the balance after bet is less than initial
+    //you lose and double your bet
+    if(afterBetBal <= initialBalance){
+      console.log("Double Bet!");
+      clickDouble();
+      initialBalance = getBalance();
+      clickBlackOrGold();
+    }else{
+      //If balance after bet is greater than inital
+      //you win, clear bet, click dime, and bet
+      console.log("We Won!");
+      clickClear();
+      clickTextInput(customBetVal);
       initialBalance = getBalance();
       clickBlackOrGold();
     }
@@ -91,9 +127,11 @@ function beginBetting(){
 }
 
 chrome.runtime.onMessage.addListener(
-      function(request, sender, sendResponse) {
-        window.startMsg = request.msg;
-        if(request.msg === "start" ) {
-          beginBetting();
-        }
+  function(request, sender, sendResponse) {
+    window.startMsg = request.msg;
+    if(request.msg === "start" && request.customBetVal === "") {
+      beginBetting();
+    }else if(request.msg === "start" && request.customBetVal.length > 0){
+      beginCustomBetting(request.customBetVal);
+    }
 });

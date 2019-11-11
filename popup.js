@@ -1,5 +1,7 @@
 document.getElementById("runBetToggle").addEventListener('click', popup);
 
+
 function popup() {
-	 chrome.runtime.sendMessage({msg: "start"});
+	var customBetVal = document.getElementById("customBet").value;
+	chrome.runtime.sendMessage({msg: "start", customBetVal: customBetVal});
 }
