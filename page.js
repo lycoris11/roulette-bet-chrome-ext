@@ -1,12 +1,20 @@
 function clickPenny() {
+    document.getElementsByClassName("bet-input__control")[1].click();
+}
+
+function clickDime() {
     document.getElementsByClassName("bet-input__control")[2].click();
 }
 
-function clickBlack(){
+function clickDollar() {
+    document.getElementsByClassName("bet-input__control")[3].click();
+}
+
+function clickBlackBet(){
 	document.getElementsByClassName("bet-btn")[0].click()
 }
 
-function clickGold(){
+function clickGoldBet(){
 	document.getElementsByClassName("bet-btn")[2].click()
 }
 
@@ -35,25 +43,35 @@ chrome.runtime.onMessage.addListener(
         }
 });
 
+function clickBlackOrGold(){
+  if(getBlackCount()>=getGoldCount()){
+    clickBlackBet();
+    console.log("Betting Black!");
+  }else{
+    clickGoldBet();
+    console.log("Betting Gold!");
+  }
+}
+
 function beginBetting(){
-  var balance = getBalance();
-  clickPenny();
-  clickBlack();
-  balance = getBalance();
   console.log("Inside Begin Betting!");
+  var balance = getBalance();
+  clickDime();
+  
+  afterBetBal = getBalance();
   setInterval(function(){
-    var afterBetBal = getBalance();
-    console.log("Inside the interval.");
+    afterBetBal = getBalance();
     if(balance >= afterBetBal){
-      console.log("Inside balance > getBalance");
+      console.log("Double Bet!");
       document.getElementsByClassName("bet-input__control")[7].click();
-      clickBlack();
-    }else{
-      console.log("inside this");
-      clickClear();
-      clickPenny();
-      clickBlack();
       balance = getBalance();
+      clickBlackOrGold();
+    }else{
+      console.log("We Won!");
+      clickClear();
+      clickDime();
+      balance = getBalance();
+      clickBlackOrGold();
     }
   },28000);
 }
