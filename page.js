@@ -1,5 +1,5 @@
 function clickPenny() {
-    document.getElementsByClassName("bet-input__control")[1].click();
+    document.getElementsByClassName("bet-input__control")[2].click();
 }
 
 function clickBlack(){
@@ -26,9 +26,6 @@ function clickClear(){
   document.getElementsByClassName("ml-3 button-pill uppercase")[0].click();
 }
 
-function makeBet(){
-
-}
 
 chrome.runtime.onMessage.addListener(
       function(request, sender, sendResponse) {
@@ -39,26 +36,24 @@ chrome.runtime.onMessage.addListener(
 });
 
 function beginBetting(){
-  var stopOrRun = true;
   var balance = getBalance();
-  var betAmount = 0.01;
   clickPenny();
   clickBlack();
-  clickClear();
-  var balance = getBalance();
+  balance = getBalance();
   console.log("Inside Begin Betting!");
   setInterval(function(){
+    var afterBetBal = getBalance();
     console.log("Inside the interval.");
-    if(balance === getBalance()){
+    if(balance >= afterBetBal){
       console.log("Inside balance > getBalance");
       document.getElementsByClassName("bet-input__control")[7].click();
       clickBlack();
     }else{
       console.log("inside this");
+      clickClear();
       clickPenny();
       clickBlack();
-      clickClear();
       balance = getBalance();
     }
-  },30000);
+  },28000);
 }

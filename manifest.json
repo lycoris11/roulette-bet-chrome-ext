@@ -13,6 +13,10 @@
    	},
     "default_title": "Bet on CSGO Empire"
   },
+  "background": {
+  "scripts": ["background.js"],
+  "persistent": false
+  },
   "content_scripts": [{
         "matches": ["<all_urls>"],
         "all_frames": true,
