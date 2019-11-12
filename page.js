@@ -65,10 +65,10 @@ function clickBlackOrGold(){
 }
 
 function beginBetting(){
-  console.log("Inside Begin Betting!");
+  console.log("Inside Regular Betting!");
   var initialBalance = getBalance();
   //Click on a Dime
-  clickPenny();
+  clickDime();
   //Bet
   clickBlackOrGold();
   //Check balance afterwards
@@ -88,17 +88,17 @@ function beginBetting(){
       //you win, clear bet, click dime, and bet
       console.log("We Won!");
       clickClear();
-      clickPenny();
+      clickDime();
       initialBalance = getBalance();
       clickBlackOrGold();
     }
-  },27500);
+  },28000);
 }
 
 function beginCustomBetting(customBetVal){
-  console.log("Inside Begin Betting!");
+  console.log("Inside Custom Betting!");
   var initialBalance = getBalance();
-  //Click on a Dime
+  //Input a custom amount
   clickTextInput(customBetVal);
   //Bet
   clickBlackOrGold();
@@ -123,7 +123,7 @@ function beginCustomBetting(customBetVal){
       initialBalance = getBalance();
       clickBlackOrGold();
     }
-  },27500);
+  },28000);
 }
 
 chrome.runtime.onMessage.addListener(
