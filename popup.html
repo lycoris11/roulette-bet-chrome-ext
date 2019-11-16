@@ -4,8 +4,8 @@
       	<style>
 		   	body{
 	        	display: flex;
-	        	width: 150px;
-	        	height: 80px;
+	        	width: 300px;
+	        	height: 100px;
 	        	margin: 0;
 	        	align-items: center;
 	        	justify-content: center;
@@ -16,14 +16,16 @@
       	</style>
     </head>
     <body>
-    	<span class="first_element">
-    		<h4>Start Betting </h4>
-    	</span>
-    	<span class="first_element">
-			<button id="runBetToggle">Start Betting</button>
-			<button id="stopBet">Stopped Betting</button>
-			<input type="text" id="customBet">
-		</span>
+    	<div>
+	    	<span class="first_element">
+	    		<h4>Start Betting </h4>
+	    	</span>
+	    	<span class="first_element">
+	    		<input type="text" id="customBet" placeholder="You can leave this blank.">
+				<button id="runBetToggle">Start Betting</button>
+				<button id="stopBet">Stop Betting</button>
+			</span>
+		</div>	
 		<script src="scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
 		<script src="scripts/background.js"></script>
 		<script src="scripts/popup.js"></script> 

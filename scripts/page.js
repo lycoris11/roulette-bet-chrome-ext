@@ -1,3 +1,5 @@
+var bet;
+
 //sets a penny bet
 function clickPenny() {
   document.getElementsByClassName("bet-input__control")[1].click();
@@ -110,7 +112,7 @@ function betterBeginBetting(){
   clickDime();
   //return the class of the coin we bet on
   var ourBetClass = clickBlackOrGold();
-  setInterval(function(){
+  bet = setInterval(function(){
     //if the coin matches the winning class then we double down
     if(ourBetClass == getWinningBetClass()){
       console.log("We Won!");
@@ -123,7 +125,7 @@ function betterBeginBetting(){
       clickDouble();
       ourBetClass = clickBlackOrGold();
     }
-  }, 28000);
+  }, 27900);
 }
 
 function beginCustomBetting(customBetVal){
@@ -157,12 +159,18 @@ function beginCustomBetting(customBetVal){
   },28000);
 }
 
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    window.startMsg = request.msg;
-    if(request.msg === "start" && request.customBetVal === "") {
-      betterBeginBetting();
-    }else if(request.msg === "start" && request.customBetVal.length > 0){
-      beginCustomBetting(request.customBetVal);
-    }
+chrome.runtime.onMessage.addListener(function(request, sender, response){
+  if(request.msg === "stop"){
+    clearInterval(bet);
+  }
+});
+
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+  window.startMsg = request.msg;
+  if(request.msg === "start" && request.customBetVal === "") {
+    betterBeginBetting();
+  }else if(request.msg === "start" && request.customBetVal.length > 0){
+    beginCustomBetting(request.customBetVal);
+  }
 });
