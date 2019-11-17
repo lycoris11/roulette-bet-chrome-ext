@@ -72,42 +72,12 @@ function clickBlackOrGold(){
   }
 }
 
-function beginBetting(){
-  console.log("Inside Regular Betting!");
-  var initialBalance = getBalance();
-  //Click on a Dime
-  clickDime();
-  clickDime();
-  //Bet
-  clickBlackOrGold();
-  //Check balance afterwards
-  var afterBetBal = getBalance();
-  setInterval(function(){
-    //Get the balance after the bet
-    afterBetBal = getBalance();
-    //If the balance after bet is less than initial
-    //you lose and double your bet
-    if(afterBetBal < initialBalance){
-      console.log("Double Bet!");
-      clickDouble();
-      initialBalance = getBalance();
-      clickBlackOrGold();
-    }else{
-      //If balance after bet is greater than inital
-      //you win, clear bet, click dime, and bet
-      console.log("We Won!");
-      clickClear();
-      clickDime();
-      clickDime();
-      initialBalance = getBalance();
-      clickBlackOrGold();
-    }
-  },28000);
-}
-
 function betterBeginBetting(){
   console.log("Inside Better Betting");
   //click bet ammount
+  clickDime();
+  clickDime();
+  clickDime();
   clickDime();
   clickDime();
   //return the class of the coin we bet on
@@ -119,13 +89,16 @@ function betterBeginBetting(){
       clickClear();
       clickDime();
       clickDime();
+      clickDime();
+      clickDime();
+      clickDime();
       ourBetClass = clickBlackOrGold();
     }else{
       console.log("Double Bet!");
       clickDouble();
       ourBetClass = clickBlackOrGold();
     }
-  }, 27900);
+  }, 28000);
 }
 
 function beginCustomBetting(customBetVal){
