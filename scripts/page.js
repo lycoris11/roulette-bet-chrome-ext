@@ -55,6 +55,7 @@ function getGoldCount(){
   return document.getElementsByClassName("text-light-grey-1 text-xxs font-bold mr-2")[5].innerText;
 }
 
+//return the most recent winning class name of either black or gold
 function getWinningBetClass(){
   return document.getElementsByClassName("previous-rolls-item")[19].firstElementChild.className;
 }
@@ -94,7 +95,7 @@ function betterBeginBetting(){
       clickDime();
       ourBetClass = clickBlackOrGold();
     }else{
-      console.log("Double Bet!");
+      console.log("We Lost, Double Bet!");
       clickDouble();
       ourBetClass = clickBlackOrGold();
     }
@@ -103,31 +104,20 @@ function betterBeginBetting(){
 
 function beginCustomBetting(customBetVal){
   console.log("Inside Custom Betting!");
-  var initialBalance = getBalance();
   //Input a custom amount
   clickTextInput(customBetVal);
   //Bet
-  clickBlackOrGold();
-  //Check balance afterwards
-  afterBetBal = getBalance();
-  setInterval(function(){
-    //Get the balance after the bet
-    afterBetBal = getBalance();
-    //If the balance after bet is less than initial
-    //you lose and double your bet
-    if(afterBetBal <= initialBalance){
-      console.log("Double Bet!");
-      clickDouble();
-      initialBalance = getBalance();
-      clickBlackOrGold();
-    }else{
-      //If balance after bet is greater than inital
-      //you win, clear bet, click dime, and bet
+  var ourBetClass = clickBlackOrGold();
+  bet = setInterval(function(){
+    if(ourBetClass == getWinningBetClass()){
       console.log("We Won!");
       clickClear();
       clickTextInput(customBetVal);
-      initialBalance = getBalance();
-      clickBlackOrGold();
+      outBetClass = clickBlackOrGold();
+    }else{
+      console.log("We Lost, Double Bet!");
+      clickDouble();
+      outBetClass = clickBlackOrGold();
     }
   },28000);
 }
