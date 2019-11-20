@@ -184,13 +184,13 @@ function testTimeBasedBetting(){
           ourBetClass = testClickBlackOrGold();
         }else{
           testBet *= 2;
-          console.log("We Lost, Double Bet to " + testBet + " Balance: $" + testBalance);
           if(testBet > testBalance){
             clearInterval(checkforThree);
             console.log("We Lost It All!")
           }else{
             testSubtractBet(testBet);
             testChangeBalance();
+            console.log("We Lost, Double Bet to " + testBet + " Balance: $" + testBalance);
             ourBetClass = testClickBlackOrGold();
           }
         }

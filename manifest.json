@@ -14,13 +14,13 @@
     "default_title": "Bet on CSGO Empire"
   },
   "background": {
-  "scripts": ["node_modules/arrive/minified/arrive.min.js", "scripts/background.js"],
+  "scripts": ["scripts/jquery-3.4.1.min.js", "scripts/background.js"],
   "persistent": false
   },
   "content_scripts": [{
         "matches": ["<all_urls>"],
         "all_frames": true,
-        "js": ["node_modules/arrive/minified/arrive.min.js", "scripts/page.js"]
+        "js": ["scripts/jquery-3.4.1.min.js", "scripts/page.js"]
     }],
   "icons": {
   	"16": "images/roulette16.png",
