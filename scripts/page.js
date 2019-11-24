@@ -1,7 +1,16 @@
 var bet; 
-var checkforThree;
+var betCycle;
 var testBet
-var testBalance = 1024;
+var testBalance = 1755.7;
+var randRegExp = new Array(7);
+randRegExp[0] = new RegExp("4{1}\.[0-9]{2}");
+randRegExp[1] = new RegExp("5{1}\.[0-9]{2}");
+randRegExp[2] = new RegExp("6{1}\.[0-9]{2}");
+randRegExp[3] = new RegExp("7{1}\.[0-9]{2}");
+randRegExp[4] = new RegExp("8{1}\.[0-9]{2}");
+randRegExp[5] = new RegExp("9{1}\.[0-9]{2}");
+randRegExp[6] = new RegExp("10{1}\.[0-9]{2}");
+
 //sets a penny bet
 function clickPenny() {
   document.getElementsByClassName("bet-input__control")[1].click();
@@ -75,21 +84,27 @@ function clickBlackOrGold(){
   }
 }
 
-function timeBasedBetting(){
+//bettingfunction
+function regexMatchBetting(){
   console.log("Inside Time Based Betting");
   clickPenny()
   //return the class of the coin we bet on
   var ourBetClass = clickBlackOrGold();
 
-  checkforThree = setInterval(function(){
+  //loop that runs every second
+  betCycle = setInterval(function(){
+    //check for existance of timer
     if(document.getElementsByClassName("text-2xl font-bold").length > 0){
-      var regEx = new RegExp("6{1}\.[0-9]{2}"); 
+      var regEx = randRegExp[Math.floor(Math.random() * 7)]
+      //match regular expression to time and execute betting
       if(regEx.test(document.getElementsByClassName("text-2xl font-bold")[0].innerText)){
+        //win condition
         if(ourBetClass == getWinningBetClass()){
           console.log("We Won!");
           clickClear();
           clickPenny()
           ourBetClass = clickBlackOrGold();
+        //loss  
         }else{
           console.log("We Lost, Double Bet!");
           clickDouble();
@@ -100,24 +115,26 @@ function timeBasedBetting(){
   },1000);
 }
 
+//listener for stop
 chrome.runtime.onMessage.addListener(function(request, sender, response){
   if(request.msg === "stop"){
-    clearInterval(bet);
+    clearInterval(betCycle);
   }
 });
 
-
+//listner for start
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
   window.startMsg = request.msg;
   if(request.msg === "start" && request.customBetVal === "") {
-    testTimeBasedBetting();
-  }else if(request.msg === "start" && request.customBetVal.length > 0){
+    regexMatchBetting();
+  }/*else if(request.msg === "start" && request.customBetVal.length > 0){
     beginCustomBetting(request.customBetVal);
-  }
+  }*/
 });
 
 /************************************TESTING FUNCTIONS FOR DRY RUNS*************/
 
+//bets the optimal bet amount
 function testClickOptimumBet(){
   if(testBalance >= 1024 && testBalance < 1229){
     testBet = 0.5;
@@ -135,16 +152,47 @@ function testClickOptimumBet(){
     testBet = 0.8;
     console.log("Bet is 0.8!");
   }
-  if(testBalance >= 1842){
+  if(testBalance >= 1842 && testBalance < 2048){
     testBet = 0.9;
     console.log("Bet is 0.9!");
   }
+  if(testBalance >= 2048 && testBalance < 2252){
+    testBet = 1.0;
+    console.log("Bet is 0.9!");
+  }
+  if(testBalance >= 2252 && testBalance < 2456){
+    testBet = 1.1;
+    console.log("Bet is 0.9!");
+  }
+  if(testBalance >= 2456 && testBalance < 2661){
+    testBet = 1.2;
+    console.log("Bet is 0.9!");
+  }
+  if(testBalance >= 2661 && testBalance < 2865){
+    testBet = 1.3;
+    console.log("Bet is 0.9!");
+  }
+  if(testBalance >= 2865 && testBalance < 3071){
+    testBet = 1.4;
+    console.log("Bet is 0.9!");
+  }
+  if(testBalance >= 3071 && testBalance < 3275){
+    testBet = 1.5;
+    console.log("Bet is 0.9!");
+  }
+  if(testBalance >= 3275){
+    testBet = 1.6;
+    console.log("Bet is 0.9!");
+  }
+
 }
 
+//subtracts from balance
 function testSubtractBet(n){
   testBalance -= n;
 }
 
+//bets on black or gold
 function testClickBlackOrGold(){
   if(getBlackCount()>=getGoldCount()){
     console.log("Betting Black!");
@@ -155,16 +203,23 @@ function testClickBlackOrGold(){
   }
 }
 
+//sets balance
 function testChangeBalance(){
   document.getElementsByClassName("balance")[1].getElementsByTagName("span")[0].getElementsByTagName("span")[0].innerText = testBalance;
 }
 
-function testTimeBasedBetting(){
-  console.log("Inside Test Time Based Betting");
-  testChangeBalance();
+//betting function
+function testBetMoney(){
   testClickOptimumBet()
   testSubtractBet(testBet);
   testChangeBalance()
+}
+
+//simulates betting
+function testTimeBasedBetting(){
+  console.log("Inside Test Time Based Betting");
+  testChangeBalance();
+  testBetMoney()
   //return the class of the coin we bet on
   var ourBetClass = testClickBlackOrGold();
 
@@ -178,9 +233,7 @@ function testTimeBasedBetting(){
           console.log("We Won!");
           testChangeBalance();
           testBet = 0;
-          testClickOptimumBet()
-          testSubtractBet(testBet);
-          testChangeBalance();
+          testBetMoney();
           ourBetClass = testClickBlackOrGold();
         }else{
           testBet *= 2;
