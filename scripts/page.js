@@ -86,7 +86,7 @@ function clickBlackOrGold(){
 
 //bettingfunction
 function regexMatchBetting(){
-  console.log("Inside Time Based Betting");
+  console.log("Inside Regex Match Betting");
   clickPenny()
   //return the class of the coin we bet on
   var ourBetClass = clickBlackOrGold();
@@ -95,7 +95,7 @@ function regexMatchBetting(){
   betCycle = setInterval(function(){
     //check for existance of timer
     if(document.getElementsByClassName("text-2xl font-bold").length > 0){
-      var regEx = randRegExp[Math.floor(Math.random() * 7)]
+      var regEx = randRegExp[2]
       //match regular expression to time and execute betting
       if(regEx.test(document.getElementsByClassName("text-2xl font-bold")[0].innerText)){
         //win condition
@@ -122,10 +122,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, response){
   }
 });
 
-//listner for start
+//listener for start
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
   window.startMsg = request.msg;
-  if(request.msg === "start" && request.customBetVal === "") {
+  if(request.msg === "start"/* && request.customBetVal === ""*/) {
     regexMatchBetting();
   }/*else if(request.msg === "start" && request.customBetVal.length > 0){
     beginCustomBetting(request.customBetVal);

@@ -3,6 +3,7 @@
     <head>
       	<style>
 		   	body{
+		   		background-color: #1d1f27;
 	        	display: flex;
 	        	width: 300px;
 	        	height: 100px;
@@ -10,20 +11,102 @@
 	        	align-items: center;
 	        	justify-content: center;
 	        	text-align: center;
-	        	font-family: Helvetica neue, roboto;
+	        	font-family: Gill Sans, sans-serif
 	        	font-weight: 300;
 		   	}
+		   	.glow-on-hover {
+			    width: 120px;
+			    height: 25px;
+			    border: none;
+			    outline: none;
+			    color: #fff;
+			    background: #111;
+			    cursor: pointer;
+			    position: relative;
+			    z-index: 0;
+			    border-radius: 10px;
+			}
+
+			.glow-on-hover:before {
+			    content: '';
+			    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+			    position: absolute;
+			    top: -2px;
+			    left:-2px;
+			    background-size: 400%;
+			    z-index: -1;
+			    filter: blur(5px);
+			    width: calc(100% + 4px);
+			    height: calc(100% + 4px);
+			    animation: glowing 20s linear infinite;
+			    opacity: 0;
+			    transition: opacity .3s ease-in-out;
+			    border-radius: 10px;
+			}
+
+			.glow-on-hover:active {
+			    color: #000
+			}
+
+			.glow-on-hover:active:after {
+			    background: transparent;
+			}
+
+			.glow-on-hover:hover:before {
+			    opacity: 1;
+			}
+
+			.glow-on-hover:after {
+			    z-index: -1;
+			    content: '';
+			    position: absolute;
+			    width: 100%;
+			    height: 100%;
+			    background: #111;
+			    left: 0;
+			    top: 0;
+			    border-radius: 10px;
+			}
+
+			@keyframes glowing {
+			    0% { background-position: 0 0; }
+			    50% { background-position: 400% 0; }
+			    100% { background-position: 0 0; }
+			}
+			.neon-text {
+			    background-color: rgba(155, 0, 0, 0.04);
+			    box-shadow: 0 0 70px 20px rgba(155, 0, 0, 0.04);
+			    border-radius: 200px;
+			    color: #ffd4a4;
+			    filter: drop-shadow(0px 0px 13px #9e6829);
+			    -webkit-text-stroke: 6px rgba(155, 0, 0, 0.3);
+			    display: inline-block;
+			    position: relative;
+			    animation: glow 170ms ease infinite forwards;
+			}
+
+			@keyframes glow {
+			    0% {
+
+			    }
+			    50% {
+			        filter: drop-shadow(0px 0px 15px #9e6829);
+			    }
+			    100% {
+
+			    }
+			}
       	</style>
     </head>
     <body>
     	<div>
-	    	<span class="first_element">
-	    		<h4>Start Betting </h4>
+	    	<span class="neon-text">
+	    		<h2>CSGO Empire Betting Bot</h2>
 	    	</span>
 	    	<span class="first_element">
-	    		<input type="text" id="customBet" placeholder="You can leave this blank.">
-				<button id="runBetToggle">Start Betting</button>
-				<button id="stopBet">Stop Betting</button>
+	    		<!--<input type="text" id="customBet" placeholder="You can leave this blank.">-->
+				<button class="glow-on-hover" id="runBetToggle" type="button">Start Betting</button>
+				<button class="glow-on-hover" id="stopBet" type="button">Stop Betting</button>
 			</span>
 		</div>	
 		<script src="scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
