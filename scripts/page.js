@@ -90,12 +90,11 @@ function regexMatchBetting(){
   clickPenny()
   //return the class of the coin we bet on
   var ourBetClass = clickBlackOrGold();
-
   //loop that runs every second
+  var regEx = new RegExp("6{1}\.[0-9]{2}");
   betCycle = setInterval(function(){
     //check for existance of timer
     if(document.getElementsByClassName("text-2xl font-bold").length > 0){
-      var regEx = randRegExp[2]
       //match regular expression to time and execute betting
       if(regEx.test(document.getElementsByClassName("text-2xl font-bold")[0].innerText)){
         //win condition
