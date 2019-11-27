@@ -84,10 +84,77 @@ function clickBlackOrGold(){
   }
 }
 
+function clickOptimizedBet(){
+  if(getBalance() >= 40.95 && getBalance < 81.9){
+     clickPenny();
+  }
+  if(getBalance() >= 81.9 && getBalance < 122.85){
+     clickPenny();
+     clickPenny();
+  }
+  if(getBalance() >= 122.85 && getBalance < 81.9){
+     clickPenny();
+     clickPenny();
+     clickPenny();
+  }
+  if(getBalance() >= 163.8 && getBalance < 81.9){
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+  }
+  if(getBalance() >= 204.75 && getBalance < 81.9){
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+  }
+  if(getBalance() >= 245.7 && getBalance < 81.9){
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+  }
+  if(getBalance() >= 286.65 && getBalance < 81.9){
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+  }
+  if(getBalance() >= 327.6 && getBalance < 81.9){
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+
+  }
+  if(getBalance() >= 368.55 && getBalance < 81.9){
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+     clickPenny();
+  }
+}
+
 //bettingfunction
 function regexMatchBetting(){
   console.log("Inside Regex Match Betting");
-  clickPenny()
+  clickOptimizedBet();
   //return the class of the coin we bet on
   var ourBetClass = clickBlackOrGold();
   //loop that runs every second
@@ -101,7 +168,7 @@ function regexMatchBetting(){
         if(ourBetClass == getWinningBetClass()){
           console.log("We Won!");
           clickClear();
-          clickPenny()
+          clickOptimizedBet();
           ourBetClass = clickBlackOrGold();
         //loss  
         }else{
