@@ -8,11 +8,11 @@ Open chrome://extensions in the chrome browser. Turn on Developer Mode. Load the
 This bot uses the Martingale Betting Strategy. You start with a small bet. If you lose, you double your bet on the next turn to cover your losses repeating until you win or run out of money. If you win, then you bet the initial ammount the next turn. Don't get greedy. Bet safe. And trust the system!
 
 ### Recommendations For Betting
-Use this function to determine the minimum balance you must maintain to bet a certain bet ammount *n*. This function accounts for 13 losses in a row.  
-![equation](https://latex.codecogs.com/gif.latex?f%28n%29%3D%5Csum_%7Bx%3D0%7D%5E%7B13%7D%20n*2%5Ex%3DminBalance)  
+Use this function to determine the minimum balance you must maintain to bet a certain bet ammount *n*. This function accounts for 14 losses in a row.  
+![equation](https://latex.codecogs.com/gif.latex?f%28n%29%3D%5Csum_%7Bx%3D0%7D%5E%7B13%7Dn*2%5Ex%3DminBalance)  
 
-The probability of losing 13 times in a row is 0.000282. Where there is a 7/15 chance of winning, and a 8/15 chance of losing each turn.
-![equation](https://latex.codecogs.com/gif.latex?%288/15%29%5E%7B13%7D%3D0.00028247724)
+The probability of losing 14 times in a row is 0.000150. Where there is a 7/15 chance of winning, and a 8/15 chance of losing each turn.
+![equation](https://latex.codecogs.com/gif.latex?%288/15%29%5E%7B14%7D%3D0.00015065452)
 
 
 ### Win Rate and Profit Chart
