@@ -29,7 +29,7 @@ Profit Chart
 |$832.56  |$0.05|70.13  |24.04|
 |$1000.86 |$0.06|56.10  |26.38|  
 
-The bet ammount is based off the balance defined in the betting function. So to start betting $0.01 you must have a minimum balance of $163.83. It will take 273.05 hours or 11.38 days to reach a total balance of $327.66 at which point you can start betting $0.02.
+The bet ammount is based off the balance defined in the betting function. So to start betting $0.01 you must have a minimum balance of $163.83 assuming you account for the reccommeded 13 losses. It will take 273.05 hours or 11.38 days to reach a total balance of $327.66 at which point you can start betting $0.02.
 
 ### Attributions
 Icons made by [Nikita Golubev](https://www.flaticon.com/authors/nikita-golubev "Nikita Golubev") from [Flaticon](https://www.flaticon.com/ "Flaticon")
