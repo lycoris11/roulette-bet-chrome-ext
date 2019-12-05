@@ -1,8 +1,6 @@
 # roulette-bet-chrome-ext
 A Chrome extension for roulette betting on CSGO Empire written in Pure JavaScript.
 
-### About
-
 ### To Use
 Open chrome://extensions in the chrome browser. Turn on Developer Mode. Load the unpacked extension.
 
