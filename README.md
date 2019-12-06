@@ -57,7 +57,6 @@ The bet ammount is based off the balance defined in the betting function. So to 
 * Fully Automated
 * Lightweight
 * Self Optimizing
-* Fast
 
 ### Attributions
 Icons made by [Nikita Golubev](https://www.flaticon.com/authors/nikita-golubev "Nikita Golubev") from [Flaticon](https://www.flaticon.com/ "Flaticon")
