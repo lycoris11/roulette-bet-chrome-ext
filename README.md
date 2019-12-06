@@ -54,10 +54,10 @@ Profit Chart
 The bet ammount is based off the balance defined in the betting function. So to start betting $0.01 you must have a minimum balance of $163.83 assuming you account for the reccommeded 13 losses. It will take 273.05 hours or 11.38 days to reach a total balance of $327.66 at which point you can start betting $0.02. Don't worry about updating it tho! The bot self optimizes bet amounts so you don't have to do a thing.  
 
 ### Features
-..* Fully Automated
-..* Lightweight
-..* Self Optimizing
-..* Fast
+* Fully Automated
+* Lightweight
+* Self Optimizing
+* Fast
 
 ### Attributions
 Icons made by [Nikita Golubev](https://www.flaticon.com/authors/nikita-golubev "Nikita Golubev") from [Flaticon](https://www.flaticon.com/ "Flaticon")
