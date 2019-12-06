@@ -3,6 +3,7 @@ var betCycle;
 var testBet
 var testBetCount = 0;
 var testBalance = 225.85;
+var betCount = 0;
 betValue = 0.01;
 updatedBetValue = 0.01;
 randRegExp = new Array(7);
@@ -58,32 +59,9 @@ function getBalance(){
   return document.getElementsByClassName("balance")[1].getElementsByTagName("span")[0].getElementsByTagName("span")[0].innerText;
 }
 
-//returns number of past black wins
-function getBlackCount(){
-  return document.getElementsByClassName("text-light-grey-1 text-xxs font-bold mr-2")[3].innerText;
-}
-
-//returns number of past gold bet wins
-function getGoldCount(){
-  return document.getElementsByClassName("text-light-grey-1 text-xxs font-bold mr-2")[5].innerText;
-}
-
 //return the most recent winning class name of either black or gold
 function getWinningBetClass(){
   return document.getElementsByClassName("previous-rolls-item")[19].firstElementChild.className;
-}
-
-//clicks on the bet that has the most previous wins
-function clickBlackOrGold(){
-  if(getBlackCount()>=getGoldCount()){
-    clickBlackBet();
-    console.log("Betting Black!");
-    return "inline-block w-24 h-24 rounded-full ml-1 coin-ct";
-  }else{
-    clickGoldBet();
-    console.log("Betting Gold!");
-    return "inline-block w-24 h-24 rounded-full ml-1 coin-t";
-  }
 }
 
 function inputBet(k){
@@ -92,18 +70,22 @@ function inputBet(k){
   var inputs = [1.0, 0.1, 0.01];
   for(i = 0; i < denominations.length; i++){
     if(k >= denominations[i]){
-      numberOfClicks = Math.floor(k/denominations[i])
+      numberOfClicks = Math.floor(k/denominations[i]);
+      console.log(numberOfClicks);
       if(inputs[i] == 1){
-        for(i = 0; i < numberOfClicks; i++){
-          clickDollar();
+        for(j = 0; j < numberOfClicks; j++){
+          console.log("click dollar");
+          //clickDollar();
         }
       }else if(inputs[i] == 0.1){
-        for(i = 0; i < numberOfClicks; i++){
-          clickDime();
+        for(j = 0; j < numberOfClicks; j++){
+          console.log("click dime");
+          //clickDime();
         }
-      }else if(input[i] == 0.01){
-        for(i = 0; i < numberOfClicks; i++){
-          clickPenny();
+      }else if(inputs[i] == 0.01){
+        for(j = 0; j < numberOfClicks; j++){
+          console.log("click penny");
+          //clickPenny();
         }
       }
       k %= denominations[i];
@@ -136,12 +118,30 @@ function clickOptimumBet(){
   inputBet(betValue);
 }
 
+//clicks on the bet that has the most previous wins
+function clickBlackOrGold(){
+  if(betCount >= 0 && betCount < 3){
+    betCount++;
+    //clickBlackBet();
+    console.log("Betting Black!");
+    return "inline-block w-24 h-24 rounded-full ml-1 coin-ct";
+  }else if(betCount >= 3 && betCount < 6){
+    betCount++;
+    if(betCount > 5){
+      betCount = 0;
+    }
+    //clickGoldBet();
+    console.log("Betting Gold!");
+    return "inline-block w-24 h-24 rounded-full ml-1 coin-t";
+  }
+}
+
 //bettingfunction
 function regexMatchBetting(){
   console.log("Inside Regex Match Betting");
   clickOptimumBet();
   //return the class of the coin we bet on
-  var ourBetClass = clickBlackBet();
+  var ourBetClass = clickBlackOrGold();
   //loop that runs every second
   var regEx = new RegExp("6{1}\.[0-9]{2}");
   betCycle = setInterval(function(){
@@ -154,12 +154,12 @@ function regexMatchBetting(){
           console.log("We Won!");
           clickClear();
           clickOptimumBet();
-          ourBetClass = clickBlackBet();
+          ourBetClass = clickBlackOrGold();
         //loss  
         }else{
           console.log("We Lost, Double Bet!");
-          clickDouble();
-          ourBetClass = clickBlackBet();
+          //clickDouble();
+          ourBetClass = clickBlackOrGold();
         }
       }
     }
