@@ -44,10 +44,10 @@ Profit Chart
 |-|-|-|-|
 |$163.83  |$0.01|0|0|
 |$327.66  |$0.02|273.05 |11.38|
-|$495.96  |$0.03|140.25 |17.22|
-|$664.26  |$0.04|93.50  |21.12|
-|$832.56  |$0.05|70.13  |24.04|
-|$1000.86 |$0.06|56.10  |26.38|  
+|$491.49  |$0.03|140.25 |17.22|
+|$655.32  |$0.04|93.50  |21.12|
+|$819.15  |$0.05|70.13  |24.04|
+|$982.98 |$0.06|56.10  |26.38|  
 
 The bet ammount is based off the balance defined in the betting function. So to start betting $0.01 you must have a minimum balance of $163.83 assuming you account for the reccommeded 13 losses. It will take 273.05 hours or 11.38 days to reach a total balance of $327.66 at which point you can start betting $0.02.
 
