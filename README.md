@@ -1,8 +1,10 @@
 # roulette-bet-chrome-ext
-A Chrome extension for roulette betting on CSGO Empire written in Pure JavaScript.
+A Chrome extension for automated roulette betting on CSGO Empire. Written in Pure JavaScript.
+
 
 ### To Use
-Open chrome://extensions in the chrome browser. Turn on Developer Mode. Load the unpacked extension.
+Open chrome://extensions in the chrome browser. Turn on Developer Mode. Load the unpacked extension.  
+Go to CSGO Empire's website and hit start. Now you can sit back and plan that Gucci shopping cart. 
 
 ### Betting Strategy
 This bot uses the Martingale Betting Strategy. You start with a small bet. If you lose, you double your bet on the next turn to cover your losses repeating until you win or run out of money. If you win, then you bet the initial ammount the next turn. Don't get greedy. Bet safe. And trust the system!
@@ -49,7 +51,7 @@ Profit Chart
 |$819.15  |$0.05|70.13  |24.04|
 |$982.98 |$0.06|56.10  |26.38|  
 
-The bet ammount is based off the balance defined in the betting function. So to start betting $0.01 you must have a minimum balance of $163.83 assuming you account for the reccommeded 13 losses. It will take 273.05 hours or 11.38 days to reach a total balance of $327.66 at which point you can start betting $0.02.
+The bet ammount is based off the balance defined in the betting function. So to start betting $0.01 you must have a minimum balance of $163.83 assuming you account for the reccommeded 13 losses. It will take 273.05 hours or 11.38 days to reach a total balance of $327.66 at which point you can start betting $0.02. Don't worry about updating it tho! The bot self optimizes bet amounts so you don't have to do a thing.  
 
 ### Attributions
 Icons made by [Nikita Golubev](https://www.flaticon.com/authors/nikita-golubev "Nikita Golubev") from [Flaticon](https://www.flaticon.com/ "Flaticon")
