@@ -1,8 +1,11 @@
 var bet; 
 var betCycle;
 var testBet
-var testBalance = 1755.7;
-var randRegExp = new Array(7);
+var testBetCount = 0;
+var testBalance = 225.85;
+betValue = 0.01;
+updatedBetValue = 0.01;
+randRegExp = new Array(7);
 randRegExp[0] = new RegExp("4{1}\.[0-9]{2}");
 randRegExp[1] = new RegExp("5{1}\.[0-9]{2}");
 randRegExp[2] = new RegExp("6{1}\.[0-9]{2}");
@@ -34,21 +37,20 @@ function clickDouble(){
 //clicks the black bet
 function clickBlackBet(){
 	document.getElementsByClassName("bet-btn")[0].click()
+  console.log("Betting Black!");
+  return "inline-block w-24 h-24 rounded-full ml-1 coin-ct";
 }
 
 //clicks the gold bet
 function clickGoldBet(){
 	document.getElementsByClassName("bet-btn")[2].click()
+  console.log("Betting Gold!");
+  return "inline-block w-24 h-24 rounded-full ml-1 coin-t";
 }
 
 //clears the bet
 function clickClear(){
   document.getElementsByClassName("ml-3 button-pill uppercase")[0].click();
-}
-
-//input custom bet
-function clickTextInput(customBetVal){
-  document.getElementsByClassName("bg-transparent w-full h-full")[0].value = customBetVal;
 }
 
 //returns balance
@@ -84,79 +86,62 @@ function clickBlackOrGold(){
   }
 }
 
-function clickOptimizedBet(){
-  if(getBalance() >= 40.95 && getBalance < 81.9){
-     clickPenny();
+function inputBet(k){
+  k *= 100;
+  var denominations = [100, 10, 1];
+  var inputs = [1.0, 0.1, 0.01];
+  for(i = 0; i < denominations.length; i++){
+    if(k >= denominations[i]){
+      numberOfClicks = Math.floor(k/denominations[i])
+      if(inputs[i] == 1){
+        for(i = 0; i < numberOfClicks; i++){
+          clickDollar();
+        }
+      }else if(inputs[i] == 0.1){
+        for(i = 0; i < numberOfClicks; i++){
+          clickDime();
+        }
+      }else if(input[i] == 0.01){
+        for(i = 0; i < numberOfClicks; i++){
+          clickPenny();
+        }
+      }
+      k %= denominations[i];
+    }
   }
-  if(getBalance() >= 81.9 && getBalance < 122.85){
-     clickPenny();
-     clickPenny();
-  }
-  if(getBalance() >= 122.85 && getBalance < 81.9){
-     clickPenny();
-     clickPenny();
-     clickPenny();
-  }
-  if(getBalance() >= 163.8 && getBalance < 81.9){
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-  }
-  if(getBalance() >= 204.75 && getBalance < 81.9){
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-  }
-  if(getBalance() >= 245.7 && getBalance < 81.9){
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-  }
-  if(getBalance() >= 286.65 && getBalance < 81.9){
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-  }
-  if(getBalance() >= 327.6 && getBalance < 81.9){
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
+}
 
+function clickOptimumBet(){
+  var nextTier = 0.0;
+  if(betValue < 0.1){
+    betValue = parseFloat(updatedBetValue).toFixed(2);
+  }else if(betValue >= 0.1){
+    betValue = parseFloat(updatedBetValue).toFixed(1);
   }
-  if(getBalance() >= 368.55 && getBalance < 81.9){
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
-     clickPenny();
+  for(i = 0; i < 14; i++){
+    nextTier += betValue*Math.pow(2,i);
   }
+  if(betValue < 0.1){
+    nextTier += 163.83;
+  }else if (betValue > 0.1){
+    nextTier += 1638.3;
+  }
+  if(getBalance() > nextTier){
+    if(betValue < 0.1){
+      updatedBetValue = parseFloat(updatedBetValue+0.01).toFixed(2);
+    }else if (betValue > 0.1){
+      updatedBetValue = parseFloat(updatedBetValue+0.1).toFixed(1);
+    }
+  }
+  inputBet(betValue);
 }
 
 //bettingfunction
 function regexMatchBetting(){
   console.log("Inside Regex Match Betting");
-  clickOptimizedBet();
+  clickOptimumBet();
   //return the class of the coin we bet on
-  var ourBetClass = clickBlackOrGold();
+  var ourBetClass = clickBlackBet();
   //loop that runs every second
   var regEx = new RegExp("6{1}\.[0-9]{2}");
   betCycle = setInterval(function(){
@@ -168,13 +153,13 @@ function regexMatchBetting(){
         if(ourBetClass == getWinningBetClass()){
           console.log("We Won!");
           clickClear();
-          clickOptimizedBet();
-          ourBetClass = clickBlackOrGold();
+          clickOptimumBet();
+          ourBetClass = clickBlackBet();
         //loss  
         }else{
           console.log("We Lost, Double Bet!");
           clickDouble();
-          ourBetClass = clickBlackOrGold();
+          ourBetClass = clickBlackBet();
         }
       }
     }
@@ -193,12 +178,18 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
   window.startMsg = request.msg;
   if(request.msg === "start"/* && request.customBetVal === ""*/) {
     regexMatchBetting();
-  }/*else if(request.msg === "start" && request.customBetVal.length > 0){
+  }
+  /*else if(request.msg === "start" && request.customBetVal.length > 0){
     beginCustomBetting(request.customBetVal);
   }*/
 });
 
 /************************************TESTING FUNCTIONS FOR DRY RUNS*************/
+
+function testClickPenny(){
+  testBet = 0.01;
+  console.log("Bet is 0.01!")
+}
 
 //bets the optimal bet amount
 function testClickOptimumBet(){
@@ -260,10 +251,15 @@ function testSubtractBet(n){
 
 //bets on black or gold
 function testClickBlackOrGold(){
-  if(getBlackCount()>=getGoldCount()){
+  if(testBetCount>=0 && testBetCount<3){
+    testBetCount++;
     console.log("Betting Black!");
     return "inline-block w-24 h-24 rounded-full ml-1 coin-ct";
-  }else{
+  }else if(testBetCount>=3 && testBetCount<6){
+    testBetCount++;
+    if(testBetCount>5){
+      testBetCount = 0;
+    }
     console.log("Betting Gold!");
     return "inline-block w-24 h-24 rounded-full ml-1 coin-t";
   }
@@ -276,16 +272,16 @@ function testChangeBalance(){
 
 //betting function
 function testBetMoney(){
-  testClickOptimumBet()
+  testClickPenny();
   testSubtractBet(testBet);
-  testChangeBalance()
+  testChangeBalance();
 }
 
 //simulates betting
 function testTimeBasedBetting(){
   console.log("Inside Test Time Based Betting");
   testChangeBalance();
-  testBetMoney()
+  testBetMoney();
   //return the class of the coin we bet on
   var ourBetClass = testClickBlackOrGold();
 
