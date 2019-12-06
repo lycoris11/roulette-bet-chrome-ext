@@ -18,7 +18,7 @@ The probability of losing 14 times in a row is 0.000150. Where there is a 7/15 c
 ### Visualization
 |Round|Outcome|Win/Loss|Bet|Balance|
 |-|-|-|-|-|
-|0  |Gold |W|$0.01  |$163.83 |
+|0  |Gold |W|$0.01  |$163.83|
 |1  |Black|L|$0.01  |$163.82|
 |2  |Black|L|$0.02  |$163.80|
 |3  |Black|L|$0.04  |$163.76|
@@ -32,8 +32,8 @@ The probability of losing 14 times in a row is 0.000150. Where there is a 7/15 c
 |11 |Black|L|$10.24 |$143.36|
 |12 |Black|L|$20.48 |$122.88|
 |13 |Black|L|$40.96 |$81.92 |
-|14 |Black|L|$81.92 |$0     |
-|15 |Gold |W|0.01   |$163.84|
+|14 |Gold |W|$81.92 |$163.84|
+|15 |Gold |W|$0.01  |$163.85|
 
 ### Win Rate and Profit Chart
 Ranging from 23 to 28 seconds a round, this bot wins, on average, the bet value every minute. So if the bet value is $0.01, the bot will win $0.60 in 60 minutes.  
